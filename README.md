@@ -7,7 +7,8 @@ Here is my python source code for Human Action Recognition - a skeleton-based ac
   <p align="center">
   <img src="https://github.com/user-attachments/assets/f92cf236-7f3e-433c-8858-a8f5a1b40d52" width="30%">
   <img src="https://github.com/user-attachments/assets/b138c178-989a-4a1a-9948-227bb0e45618" width="30%"/>
-  <img src="https://github.com/user-attachments/assets/placeholder-image-3" width="30%"/></p>
+  <img src="https://github.com/user-attachments/assets/b08f5626-6360-484a-bb42-cd69ea490931" width="30%"/>
+
 
 # Action Recognition
 In order to use this repo, you need an action video. When a person appears in the frame, their 17 skeleton keypoints will be detected and tracked using `yolov8n-pose.pt`. The keypoints are dynamically normalized based on the bounding box and shifted relative to the hip center.
