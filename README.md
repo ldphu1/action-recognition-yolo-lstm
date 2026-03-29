@@ -37,9 +37,9 @@ You need to download the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** 
    `python3 train.py --epochs 50 --batch_size 32`
 
 # Experiments
+
 <p align = "center">
 <img width="700" src="https://github.com/user-attachments/assets/93fdf792-9140-4cc2-84c2-9ec0922d946d" />
-e" />
 </p>
 
 The LSTM model was trained using PyTorch on cloud platforms (Google Colab/Kaggle) to leverage GPU acceleration. I trained the model for 50 epochs. The model reached its convergence point and achieved impressive classification performance on the UCF101 scenarios. The key metrics for the best epoch are shown below:
