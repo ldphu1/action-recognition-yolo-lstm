@@ -3,20 +3,32 @@
 Here is my python source code for Human Action Recognition - a skeleton-based action classification system. With my code, you could:
 * Extract normalized human body keypoints from videos using YOLOv8-Pose (`pose_extraction.py`)
 * Train an Attention-LSTM network to classify temporal action sequences (`train.py`)
-* Run an inference app which tracks the main actor's skeleton and predicts actions from a single video file (`predict.py`)
+* Run a LIVE real-time inference application using your webcam to track and predict actions (`predict.py`)
   <p align="center">
   <img src="https://github.com/user-attachments/assets/placeholder-image-1" width="30%"/>
   <img src="https://github.com/user-attachments/assets/placeholder-image-2" width="30%"/>
   <img src="https://github.com/user-attachments/assets/placeholder-image-3" width="30%"/></p>
 
-# Action Recognition
+# Real-Time Action Action Recognition
 
-In order to use this repo, you need an action video. When a person appears in the frame, their 17 skeleton keypoints will be detected and tracked using `yolov8n-pose.pt`. The keypoints are dynamically normalized based on the bounding box and shifted relative to the hip center.
+**How it works:**
+1.  Captures video frames continuously from the webcam.
+2.  Detects and tracks the main person (largest bounding box) using `yolov8n-pose.pt`.
+3.  Dynamically extracts and normalizes 17 skeleton keypoints frame-by-frame.
+4.  Maintains a rolling window of **60 frames** (`MAX_FRAME = 60`) of keypoints.
+5.  Feeds the sequence into the trained Attention-LSTM network.
+6.  Smoothes the final prediction over a 30-frame history to display a stable current action label on the screen.
+7.  
+### How to run the Demo
+1.  Connect your webcam.
+2.  Ensure your trained model weights (`best_model.pt`) are in the root directory.
+3.  Run the live inference script:
+    ```bash
+    python3 predict.py
+    ```
+    *(Note: The application will open a window showing your webcam feed with the skeleton drawn and the predicted action displayed at the top. To exit the live feed, press **`q`** on your keyboard).*
 
-These temporal sequences of keypoints are collected in a rolling window of **60 frames** (`MAX_FRAME = 60`) and fed into a PyTorch LSTM network. A prediction history buffer (30 frames) is used to smooth the output and predict the most stable current action.
-
-* **For video inference:** simply run `python3 predict.py`.
-
+*(Note for Performance: Running both YOLOv8-pose and an LSTM in real-time is computationally demanding. For a smooth experience (>= 15 FPS), a dedicated GPU (e.g., NVIDIA) is highly recommended. If running on a CPU, expect lower FPS).*
 # Dataset
 
 The dataset used for training my model is a subset of the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** dataset.
