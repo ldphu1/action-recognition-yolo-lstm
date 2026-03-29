@@ -44,7 +44,7 @@ You need to download the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** 
 
 <p align = "center">
 
-<img width="671" height="640" src="https://github.com/user-attachments/assets/58f50939-63ec-470c-ba56-9e73ccdfae46"/>
+<img width="680" height="622" alt="Screenshot 2026-03-29 212903" src="https://github.com/user-attachments/assets/4d2110d2-e5cc-4b97-82d3-f16017777583" />
 
 The model structure (`model.py`) utilizes LSTM combined with an Attention mechanism and a fully connected layer with Dropout/LayerNorm for robust feature learning.
 
