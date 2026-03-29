@@ -5,8 +5,8 @@ Here is my python source code for Human Action Recognition - a skeleton-based ac
 * Train an Attention-LSTM network to classify temporal action sequences (`train.py`)
 * Run an inference app which tracks the main actor's skeleton and predicts actions from a single video file (`predict.py`)
   <p align="center">
-  <img src="https://github.com/user-attachments/assets/f92cf236-7f3e-433c-8858-a8f5a1b40d52" width="400">
-  <img src="https://github.com/user-attachments/assets/placeholder-image-2" width="30%"/>
+  <img src="https://github.com/user-attachments/assets/f92cf236-7f3e-433c-8858-a8f5a1b40d52" width="30%">
+  <img src="[https://github.com/user-attachments/assets/placeholder-image-2](https://github.com/user-attachments/assets/b138c178-989a-4a1a-9948-227bb0e45618)" width="30%"/>
   <img src="https://github.com/user-attachments/assets/placeholder-image-3" width="30%"/></p>
 
 # Action Recognition
