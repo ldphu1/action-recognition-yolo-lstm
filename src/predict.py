@@ -20,7 +20,7 @@ lstm_model = LSTM( input_size = INPUT_SIZE, hidden_size = HIDDEN_SIZE, num_class
 lstm_model.load_state_dict(torch.load("best_model.pt", map_location=device))
 lstm_model.eval()
 
-cap = cv2.VideoCapture(r"C:\Users\Asus\Desktop\DL\project2\UFC101\train\Lunges\v_Lunges_g06_c01.avi")
+cap = cv2.VideoCapture(0)
 width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
 height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
