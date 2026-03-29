@@ -25,7 +25,6 @@ Due to its large size, I only uploaded a small sample of extracted keypoint sequ
 The table below shows some examples of the 101 action categories my model used for classification:
 
 | BodyWeightSquats | BoxingPunchingBag | JumpingJack | Lunges | PushUps | TennisSwing | WalkingWithDog |
-|:---:|:---:|:---:|:---:|:---:|
 
 # Training
 
