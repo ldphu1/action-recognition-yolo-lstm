@@ -44,7 +44,7 @@ You need to download the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** 
 <p align = "center">
 <img width="700" src="https://github.com/user-attachments/assets/93fdf792-9140-4cc2-84c2-9ec0922d946d" />
   
-The model structure (model.py) utilizes LSTM combined with an Attention mechanism and a fully connected layer with Dropout/LayerNorm for robust feature learning.
+The model structure (`model.py`) utilizes LSTM combined with an Attention mechanism and a fully connected layer with Dropout/LayerNorm for robust feature learning.
 
 I trained the model for 30 epochs using the Adam optimizer and CrossEntropyLoss. The model's performance was monitored using TensorBoard (runs/tensorboard). During training, the checkpoint with the highest macro F1-score on the validation set is saved as best_model.pt.
 </p>
