@@ -5,7 +5,7 @@ import numpy as np
 from model import *
 import torch
 
-INPUT_PATH = "data/video"
+INPUT_PATH = "data/video.avi"
 
 CLASSES = ['BodyWeightSquats', 'BoxingPunchingBag', 'JumpingJack', 'Lunges', 'PushUps', 'TennisSwing', 'WalkingWithDog']
 
