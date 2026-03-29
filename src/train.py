@@ -30,7 +30,7 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
-    writer = SummaryWriter("../tensorboard")
+    writer = SummaryWriter("/tensorboard")
 
     best_f1 = 0
     global_step = 0
