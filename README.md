@@ -1,8 +1,9 @@
 # Introduction
 
 Here is my python source code for Human Action Recognition - a skeleton-based action classification system. With my code, you could:
-* Run an app which you could extract skeleton keypoints and classify actions from a video file (`.mp4` or `.avi`)
-* Run an app which you could evaluate the model's accuracy on the test dataset
+* Extract normalized human body keypoints from videos using YOLOv8-Pose (`pose_extraction.py`)
+* Train an Attention-LSTM network to classify temporal action sequences (`train.py`)
+* Run an inference app which tracks the main actor's skeleton and predicts actions from a single video file (`predict.py`)
   <p align="center">
   <img src="https://github.com/user-attachments/assets/placeholder-image-1" width="30%"/>
   <img src="https://github.com/user-attachments/assets/placeholder-image-2" width="30%"/>
@@ -10,21 +11,23 @@ Here is my python source code for Human Action Recognition - a skeleton-based ac
 
 # Action Recognition
 
-In order to use this repo, you need an action video or a sequence of extracted frames. When a person appears in the frame, their skeleton keypoints will be detected and tracked using YOLO-Pose. These temporal sequences of keypoints are then fed into a PyTorch LSTM network; whenever the sequence reaches a fixed length, the model will predict the current action being performed. 
-Below are the scripts to run the demo:
-* **For video:** simply run `python3 test_video.py`
-* **For dataset evaluation:** simply run `python3 test_dataset.py`
+In order to use this repo, you need an action video. When a person appears in the frame, their 17 skeleton keypoints will be detected and tracked using `yolov8n-pose.pt`. The keypoints are dynamically normalized based on the bounding box and shifted relative to the hip center.
+
+These temporal sequences of keypoints are collected in a rolling window of **60 frames** (`MAX_FRAME = 60`) and fed into a PyTorch LSTM network. A prediction history buffer (30 frames) is used to smooth the output and predict the most stable current action.
+
+* **For video inference:** simply run `python3 predict.py`.
 
 # Dataset
 
-The dataset used for training my model is the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** dataset, which is a challenging real-world action recognition dataset collected from YouTube. 
-Due to its large size, I only uploaded a small sample of extracted keypoint sequences (`sample_sequence/`) and a demo video in the `data/` folder for testing purposes. You can download the full original dataset from their official website.
+The dataset used for training my model is a subset of the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** dataset.
+The raw videos should be placed in the `UFC101/` folder, and the train/val splits are defined in `UFC101/train.csv` and `UFC101/val.csv`.
 
 # Categories
 
-The table below shows some examples of the 101 action categories my model used for classification:
+The model is currently trained to classify **7 specific action categories**. The table below shows the categories used for classification:
 
 | BodyWeightSquats | BoxingPunchingBag | JumpingJack | Lunges | PushUps | TennisSwing | WalkingWithDog |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 
 # Training
 
@@ -34,17 +37,17 @@ You need to download the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** 
    This script will automatically run pose estimation on every frame, normalize the coordinates, and save the sequences into `.npy` files for the train/val sets.
 2. If you want to train your model with a different set of hyper-parameters, you only need to change the arguments (like `hidden_dim`, `num_layers`, `sequence_length`) in `train.py`.
 3. Then you could simply run PyTorch LSTM training using the generated keypoint data:
-   `python3 train.py --epochs 50 --batch_size 32`
+   `python3 train.py --epochs 30 --batch_size 16`
 
 # Experiments
 
 <p align = "center">
 <img width="700" src="https://github.com/user-attachments/assets/93fdf792-9140-4cc2-84c2-9ec0922d946d" />
-</p>
+  
+The model structure (model.py) utilizes LSTM combined with an Attention mechanism and a fully connected layer with Dropout/LayerNorm for robust feature learning.
 
-The LSTM model was trained using PyTorch on cloud platforms (Google Colab/Kaggle) to leverage GPU acceleration. I trained the model for 50 epochs. The model reached its convergence point and achieved impressive classification performance on the UCF101 scenarios. The key metrics for the best epoch are shown below:
-* **Accuracy (Top-1):** ~XX.X%
-* **Validation Loss:** X.XXX
+I trained the model for 30 epochs using the Adam optimizer and CrossEntropyLoss. The model's performance was monitored using TensorBoard (runs/tensorboard). During training, the checkpoint with the highest macro F1-score on the validation set is saved as best_model.pt.
+</p>
 
 # Requirements
 
