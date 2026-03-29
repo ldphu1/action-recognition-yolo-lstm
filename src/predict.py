@@ -5,6 +5,8 @@ import numpy as np
 from model import *
 import torch
 
+INPUT_PATH = "data/video"
+
 CLASSES = ['BodyWeightSquats', 'BoxingPunchingBag', 'JumpingJack', 'Lunges', 'PushUps', 'TennisSwing', 'WalkingWithDog']
 
 MAX_FRAME = 60
