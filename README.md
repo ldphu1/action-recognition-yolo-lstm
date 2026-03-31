@@ -20,7 +20,7 @@ These temporal sequences of keypoints are collected in a rolling window of **60 
 
 # Dataset
 
-The dataset used for training my model is a subset of the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** dataset.
+The dataset used for training my model is a subset of the **[UCF101](https://www.kaggle.com/datasets/matthewjansen/ucf101-action-recognition)** dataset.
 The raw videos should be placed in the `UFC101/` folder, and the train/val splits are defined in `UFC101/train.csv` and `UFC101/val.csv`.
 
 # Categories
@@ -32,7 +32,7 @@ The model is currently trained to classify **7 specific action categories**. The
 
 # Training
 
-You need to download the **[UCF101]([https://www.crcv.ucf.edu/data/UCF101.php](https://www.kaggle.com/datasets/matthewjansen/ucf101-action-recognition))** videos and split files, then store them in your local folder. 
+You need to download the **[UCF101](https://www.kaggle.com/datasets/matthewjansen/ucf101-action-recognition)** 
 1. First, you need to extract the skeleton keypoints using YOLO-Pose by configuring the input paths and running the script:
    `python3 extract_keypoints.py`
    This script will automatically run pose estimation on every frame, normalize the coordinates, and save the sequences into `.npy` files for the train/val sets.
