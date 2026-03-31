@@ -32,7 +32,7 @@ The model is currently trained to classify **7 specific action categories**. The
 
 # Training
 
-You need to download the **[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)** videos and split files, then store them in your local folder. 
+You need to download the **[UCF101]([https://www.crcv.ucf.edu/data/UCF101.php](https://www.kaggle.com/datasets/matthewjansen/ucf101-action-recognition))** videos and split files, then store them in your local folder. 
 1. First, you need to extract the skeleton keypoints using YOLO-Pose by configuring the input paths and running the script:
    `python3 extract_keypoints.py`
    This script will automatically run pose estimation on every frame, normalize the coordinates, and save the sequences into `.npy` files for the train/val sets.
