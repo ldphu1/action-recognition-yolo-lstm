@@ -30,7 +30,7 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
-    writer = SummaryWriter("/tensorboard")
+    writer = SummaryWriter("../tensorboard")
 
     best_f1 = 0
     global_step = 0
@@ -38,9 +38,9 @@ if __name__ == "__main__":
         # ===== train =====
         model.train()
         running_loss = 0
-        progress_bar = tqdm(train_loader)
+        train_progress_bar = tqdm(train_loader)
 
-        for keypoint, label in progress_bar:
+        for keypoint, label in train_progress_bar:
 
             keypoint = keypoint.to(device)
             label    = label.to(device)
@@ -58,7 +58,7 @@ if __name__ == "__main__":
             writer.add_scalar("Loss", loss.item(), global_step)
             global_step += 1
 
-            progress_bar.set_description(
+            train_progress_bar.set_description(
                 f"Epoch {epoch+1}/{EPOCHS} | loss {loss.item():.4f}"
             )
 
@@ -70,8 +70,9 @@ if __name__ == "__main__":
         all_predictions = []
         all_labels = []
 
+        val_progress_bar = tqdm(val_loader, desc=f"Epoch {epoch+1}/{EPOCHS} | Val")
         with torch.inference_mode():
-            for keypoint, label in val_loader:
+            for keypoint, label in val_progress_bar:
                 keypoint = keypoint.to(device)
                 label    = label.to(device)
 
