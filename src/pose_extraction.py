@@ -6,7 +6,7 @@ import glob
 import pandas as pd
 from tqdm import tqdm
 
-RAW_VIDEO_DIR = "UFC101"
+RAW_VIDEO_DIR = "UCF101"
 OUT_DIR = "extracted_data"
 
 model =  YOLO('yolov8n-pose.pt')
@@ -97,6 +97,6 @@ def process_dataset(csv_file, split_name):
                 print("video not exist!")
 
 if __name__ == '__main__':
-    process_dataset("UFC101/train.csv", "train")
-    process_dataset("UFC101/val.csv", "val")
+    process_dataset("UCF101/train.csv", "train")
+    process_dataset("UCF101/val.csv", "val")
     print("DONE")
