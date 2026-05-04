@@ -22,7 +22,7 @@ These temporal sequences of keypoints are collected in a rolling window of **60 
 # Dataset
 
 The dataset used for training my model is a subset of the **[UCF101](https://www.kaggle.com/datasets/matthewjansen/ucf101-action-recognition)** dataset.
-The raw videos should be placed in the `UFC101/` folder, and the train/val splits are defined in `UFC101/train.csv` and `UFC101/val.csv`.
+The raw videos should be placed in the `UCF101/` folder, and the train/val splits are defined in `UCF101/train.csv` and `UCF101/val.csv`.
 
 # Categories
 
